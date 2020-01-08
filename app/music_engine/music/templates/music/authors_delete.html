@@ -1,0 +1,23 @@
+{% extends 'music/authors_list.html' %}
+
+{% block content %}
+            <div class="container mt-5">
+        <div class="row">
+<div class="col-6 offset-md-2">
+
+
+
+<h1>Удалить автора "{{ author }}"?</h1>
+<form class="" action="{% url 'authors_delete_url' slug=author.slug %}" method="post">
+        {% csrf_token %}
+
+<button type="submit" class="btn btn-danger">Да</button>
+<a href="{% url 'authors_list_url' %}" class="btn btn-outline-dark">Нет</a>
+</form>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}

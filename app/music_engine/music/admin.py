@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import *
+
+@admin.register(Song)
+class SongAdmin(admin.ModelAdmin):
+    list_display = ('song_id', 'song_title', 'song_time', 'artist', 'album', 'genre')

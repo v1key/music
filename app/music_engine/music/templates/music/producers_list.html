@@ -1,0 +1,53 @@
+{% extends 'music/base.html' %}
+
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="btn btn-primary" href="{% url 'producers_create_url' %}" role="button">Создать</a>
+      <a href="{% url 'albums_list_url' %}" class="navbar-brand">Альбомы</a>
+      <a href="{% url 'songs_list_url' %}" class="navbar-brand">Треки</a>
+      <a href="{% url 'artists_list_url' %}" class="navbar-brand">Исполнители</a>
+    <a href="{% url 'genres_list_url' %}" class="navbar-brand">Жанры</a>
+    <a href="{% url 'labels_list_url' %}" class="navbar-brand">Лейблы</a>
+    <a href="{% url 'producers_list_url' %}" class="navbar-brand"><font color=#007bff>Продюсеры</font></a>
+    <a href="{% url 'authors_list_url' %}" class="navbar-brand">Авторы</a>
+    <a href="{% url 'charts_url' %}" class="navbar-brand">Статистика</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Поиск по Продюсерам" aria-label="Search" name="search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
+      </form>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+
+
+</form>
+    <form method="get">
+        <button type="submit" class="btn btn-sm btn-outline-dark btn-raised mr-3">Сортировать</button>
+        <input name="sort" type="radio" value="producer_title"> По названию</input>
+        <input name="sort" type="radio" value="producer_id"> По дате добавления</input>
+    </form>
+    <p>
+
+
+<ul class="list-group">
+{% for producer in producers %}
+  <a href="{% url 'producers_detail_url' slug=producer.slug %}" class="list-group-item list-group-item-action">{{ producer }}</a>
+
+
+
+
+{% endfor %}
+
+<p>
+
+</div>
+</div>
+</div>
+{% endblock %}

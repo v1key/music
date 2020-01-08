@@ -1,0 +1,23 @@
+{% extends 'music/producers_list.html' %}
+
+{% block content %}
+            <div class="container mt-5">
+        <div class="row">
+<div class="col-6 offset-md-2">
+
+
+
+<h1>Удалить продюсера "{{ producer }}"?</h1>
+<form class="" action="{% url 'producers_delete_url' slug=producer.slug %}" method="post">
+        {% csrf_token %}
+
+<button type="submit" class="btn btn-danger">Да</button>
+<a href="{% url 'producers_list_url' %}" class="btn btn-outline-dark">Нет</a>
+</form>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}

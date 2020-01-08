@@ -1,0 +1,63 @@
+{% extends 'music/albums_list.html' %}
+
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="btn btn-primary" href="{% url 'albums_update_url' slug=album.slug %}" role="button">Изменить</a>
+      <a href="{% url 'albums_list_url' %}" class="navbar-brand"><font color=#007bff>Альбомы</font></a>
+      <a href="{% url 'songs_list_url' %}" class="navbar-brand">Треки</a>
+      <a href="{% url 'artists_list_url' %}" class="navbar-brand">Исполнители</a>
+      <a href="{% url 'genres_list_url' %}" class="navbar-brand">Жанры</a>
+      <a href="{% url 'labels_list_url' %}" class="navbar-brand">Лейблы</a>
+      <a href="{% url 'producers_list_url' %}" class="navbar-brand">Продюсеры</a>
+      <a href="{% url 'authors_list_url' %}" class="navbar-brand">Авторы</a>
+      <a href="{% url 'charts_url' %}" class="navbar-brand">Статистика</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Поиск по Альбомам" aria-label="Search" name="search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
+      </form>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+<h1>
+{{ album }}
+</h1>
+
+<ul class="list-group">
+  
+  </li>
+
+{% for song in songs %}
+
+    {% if song.album == album %}
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+    {{ song.artist }} - {{ song }}
+    <span class="badge badge-primary badge-pill">{{ song.song_time|time:"i:s" }}</span>
+    
+
+    {% endif %}
+{% endfor %}
+
+</ul>
+<p>
+<p>
+<font color=#007bff>Тип альбома: </font> {{ album.album_type|default:"Не указан" }}
+<p>
+<font color=#007bff>Дата выхода: </font> {{ album.date|default:"Не указана" }}
+<p>
+<font color=#007bff>Лейбл: </font> {{ album.label|default:"Не указан" }}
+<p>
+<font color=#007bff>Продюсер: </font> {{ album.producer|default:"Не указан" }}
+<p>
+<font color=#007bff>Страна: </font> {{ album.country|default:"Не указан" }}
+
+</div>
+</div>
+</div>
+{% endblock %}

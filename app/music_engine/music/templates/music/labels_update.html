@@ -1,0 +1,28 @@
+{% extends 'music/labels_list.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+
+
+    <h1>Изменить лейбл</h1>
+    <form class="" action="{% url 'labels_update_url' slug=label.slug %}" method="post">
+            {% csrf_token %}
+<div class="form-group">
+{{ label_form.label_title.label }}
+{{ label_form.label_title }}
+</div>
+<div class="form-group">
+{{ label_form.label_description.label }}
+{{ label_form.label_description }}
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-primary">Изменить</button>
+<a href="{% url 'labels_delete_url' slug=label.slug %}" class="btn btn-outline-danger">Удалить</a>
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

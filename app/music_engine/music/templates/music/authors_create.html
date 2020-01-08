@@ -1,0 +1,28 @@
+{% extends 'music/authors_list.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+
+
+    <h1>Новый автор</h1>
+    <form class="" action="{% url 'authors_create_url' %}" method="post">
+            {% csrf_token %}
+
+<div class="form-group">
+{{ author_form.author_title.label }}
+{{ author_form.author_title }}
+</div>
+<div class="form-group">
+{{ author_form.author_bio.label }}
+{{ author_form.author_bio }}
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-primary">Создать</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

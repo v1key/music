@@ -1,0 +1,70 @@
+{% extends 'music/base.html' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="btn btn-primary" href="{% url 'songs_create_url' %}" role="button">Создать</a>
+      <a href="{% url 'albums_list_url' %}" class="navbar-brand">Альбомы</a>
+      <a href="{% url 'songs_list_url' %}" class="navbar-brand"><font color=#007bff>Треки</font></a>
+    <a href="{% url 'artists_list_url' %}" class="navbar-brand">Исполнители</a>
+    <a href="{% url 'genres_list_url' %}" class="navbar-brand">Жанры</a>
+    <a href="{% url 'labels_list_url' %}" class="navbar-brand">Лейблы</a>
+    <a href="{% url 'producers_list_url' %}" class="navbar-brand">Продюсеры</a>
+    <a href="{% url 'authors_list_url' %}" class="navbar-brand">Авторы</a>
+      <a href="{% url 'charts_url' %}" class="navbar-brand">Статистика</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Поиск по Трекам" aria-label="Search" name="search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
+      </form>
+    </nav>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-1">
+<div class="row">
+<div class="col-14 offset-md-14">
+
+</div>
+</div>
+</div>
+
+<table class="table table-light">
+<form method="get">
+  <thead>
+    <tr>
+      <th scope="col"><input name="sort" type="radio" value="song_title">  Трек </input> <input name="sort" type="radio" value="-song_title">  ⟲ </input></th>
+      <th scope="col"><input name="sort" type="radio" value="artist__artist_title">  Исполнитель </input><input name="sort" type="radio" value="-artist__artist_title">  ⟲ </input></th>
+      <th scope="col"><input name="sort" type="radio" value="song_time">  Время </input> <input name="sort" type="radio" value="-song_time">  ⟲ </input></th>
+      <th scope="col"><input name="sort" type="radio" value="album__album_title">  Альбом </input> <input name="sort" type="radio" value="-album__album_title">  ⟲ </input></th>
+      <th scope="col"><input name="sort" type="radio" value="genre__genre_title">  Жанр </input> <input name="sort" type="radio" value="-genre__genre_title">  ⟲ </input></th>
+      <th scope="col"><input name="sort" type="radio" value="songauthors__author__author_title">  Автор(ы) </input> <input name="sort" type="radio" value="-songauthors__author__author_title">  ⟲ </input></th>
+      <th scope="col"><button type="submit" class="btn btn-sm btn-outline-dark btn-raised">Сортировать </button></th>
+    </tr>
+  </thead>
+  </form>
+  <tbody>
+{% for song in songs %}
+    <tr>
+      <th>
+      
+<a href="{% url 'songs_update_url' song_id=song.song_id %}">{{ song }}</a>
+  
+</div>
+      </th>
+      <td>{{ song.artist|default:"" }}</td>
+      <td>{{ song.song_time|time:"i:s" }}</td>
+      <td>{{ song.album|default:"" }}</td>
+      <td>{{ song.genre|default:"" }}</td>
+      <td>
+      {% for author in authors %}
+            {% if song.song_id == author.song_id %}
+                {{ author.author }}
+            {% endif %}
+      {% endfor %}
+{% endfor %}
+      </td>
+      </tr>
+
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'music/genres_list.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+
+
+    <h1>Изменить жанр</h1>
+    <form class="" action="{% url 'genres_update_url' slug=genre.slug %}" method="post">
+            {% csrf_token %}
+<div class="form-group">
+{{ genre_form.genre_title.label }}
+{{ genre_form.genre_title }}
+</div>
+<div class="form-group">
+{{ genre_form.genre_description.label }}
+{{ genre_form.genre_description }}
+</div>
+<div class="form-group">
+<button type="submit" class="btn btn-primary">Изменить</button>
+<a href="{% url 'genres_delete_url' slug=genre.slug %}" class="btn btn-outline-danger">Удалить</a>
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

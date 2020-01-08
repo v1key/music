@@ -1,0 +1,55 @@
+{% extends 'music/base.html' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="btn btn-primary" href="{% url 'albums_create_url' %}" role="button">Создать</a>
+      <a href="{% url 'albums_list_url' %}" class="navbar-brand"><font color=#007bff>Альбомы</font></a>
+      <a href="{% url 'songs_list_url' %}" class="navbar-brand">Треки</a>
+      <a href="{% url 'artists_list_url' %}" class="navbar-brand">Исполнители</a>
+      <a href="{% url 'genres_list_url' %}" class="navbar-brand">Жанры</a>
+      <a href="{% url 'labels_list_url' %}" class="navbar-brand">Лейблы</a>
+      <a href="{% url 'producers_list_url' %}" class="navbar-brand">Продюсеры</a>
+      <a href="{% url 'authors_list_url' %}" class="navbar-brand">Авторы</a>
+      <a href="{% url 'charts_url' %}" class="navbar-brand">Статистика</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Поиск по Альбомам" aria-label="Search" name="search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
+      </form>
+    </nav>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-12 offset-md-12">
+
+    <form method="get">
+        <button type="submit" class="btn btn-sm btn-outline-dark btn-raised mr-3">Сортировать</button>
+        <input name="sort" type="radio" value="album_title"> По названию</input>
+        <input name="sort" type="radio" value="album_id"> По дате добавления</input>
+        <input name="sort" type="radio" value="date"> По дате выпуска</input>
+        <input name="sort" type="radio" value="album_type"> По типу</input>
+    </form>
+    <p>
+<div class="row">
+{% for album in albums %}
+  <div class="col-sm-3">
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ album|truncatechars:17 }}</h5>
+        <p class="card-text">{{ album.album_type|default:'Альбом' }}</p>
+        <a href="{% url 'albums_detail_url' slug=album.slug %}" class="btn btn-primary">Открыть</a>
+      </div>
+     </div>
+   </div>
+{% endfor %}
+ </div>
+</div>
+
+<p>
+</div>
+</div>
+</div>
+{% endblock %}

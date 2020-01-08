@@ -1,0 +1,35 @@
+{% extends 'music/producers_list.html' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="btn btn-primary" href="{% url 'producers_update_url' slug=producer.slug %}" role="button">Изменить</a>
+      <a href="{% url 'albums_list_url' %}" class="navbar-brand">Альбомы</a>
+      <a href="{% url 'songs_list_url' %}" class="navbar-brand">Треки</a>
+      <a href="{% url 'artists_list_url' %}" class="navbar-brand">Исполнители</a>
+    <a href="{% url 'genres_list_url' %}" class="navbar-brand">Жанры</a>
+    <a href="{% url 'labels_list_url' %}" class="navbar-brand">Лейблы</a>
+    <a href="{% url 'producers_list_url' %}" class="navbar-brand"><font color=#007bff>Продюсеры</font></a>
+    <a href="{% url 'authors_list_url' %}" class="navbar-brand">Авторы</a>
+    <a href="{% url 'charts_url' %}" class="navbar-brand">Статистика</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Поиск по Продюсерам" aria-label="Search" name="search">
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Поиск</button>
+      </form>
+    </nav>
+{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+<h1>
+{{ producer }}
+</h1>
+<p>
+{{ producer.producer_bio|default:"Нет описания" }}
+</p>
+</div>
+</div>
+</div>
+{% endblock %}

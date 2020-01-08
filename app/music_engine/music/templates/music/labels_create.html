@@ -1,0 +1,27 @@
+{% extends 'music/labels_list.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+
+
+    <h1>Новый лейбл</h1>
+    <form class="" action="{% url 'labels_create_url' %}" method="post">
+            {% csrf_token %}
+
+    <div class="form-group">
+    {{ label_form.label_title.label }}
+    {{ label_form.label_title }}
+    </div>
+    <div class="form-group">
+    {{ label_form.label_description.label }}
+    {{ label_form.label_description }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+</div>
+</div>
+</div>
+{% endblock %}

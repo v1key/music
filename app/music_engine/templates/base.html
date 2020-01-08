@@ -3,8 +3,11 @@
 <html lang="ru" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+
         <title>
             {% block title %}
                 Music Library
@@ -12,8 +15,28 @@
         </title>
     </head>
     <body>
-        {% block one %}
+{% block navbar %}
 
-        {% endblock %}
+
+    <nav class="navbar navbar-dark bg-dark">
+    <a class="btn btn-secondary" role="button">Создать</a>
+    <a href="{% url 'albums_list_url' %}" class="navbar-brand">Альбомы</a>
+    <a href="{% url 'songs_list_url' %}" class="navbar-brand">Треки</a>
+    <a href="{% url 'artists_list_url' %}" class="navbar-brand">Исполнители</a>
+    <a href="{% url 'genres_list_url' %}" class="navbar-brand">Жанры</a>
+    <a href="{% url 'labels_list_url' %}" class="navbar-brand">Лейблы</a>
+    <a href="{% url 'producers_list_url' %}" class="navbar-brand">Продюсеры</a>
+    <a href="{% url 'authors_list_url' %}" class="navbar-brand">Авторы</a>
+    <a href="{% url 'charts_url' %}" class="navbar-brand">Статистика</a>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search">
+        <a class="btn btn-outline-secondary" role="button">Поиск</a>
+      </form>
+    </nav>
+{% endblock %}
+{% block content %}
+
+{% endblock %}
+
     </body>
 </html>

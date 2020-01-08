@@ -1,0 +1,65 @@
+{% extends 'music/base.html' %}
+
+{% block navbar %}
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="btn btn-secondary" role="button">Создать</a>
+      <a href="{% url 'albums_list_url' %}" class="navbar-brand">Альбомы</a>
+      <a href="{% url 'songs_list_url' %}" class="navbar-brand">Треки</a>
+      <a href="{% url 'artists_list_url' %}" class="navbar-brand">Исполнители</a>
+      <a href="{% url 'genres_list_url' %}" class="navbar-brand">Жанры</a>
+      <a href="{% url 'labels_list_url' %}" class="navbar-brand">Лейблы</a>
+      <a href="{% url 'producers_list_url' %}" class="navbar-brand">Продюсеры</a>
+      <a href="{% url 'authors_list_url' %}" class="navbar-brand">Авторы</a>
+      <a href="{% url 'charts_url' %}" class="navbar-brand"><font color=#007bff>Статистика</font></a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="" aria-label="Search" name="search">
+        <a class="btn btn-outline-secondary" role="button">Поиск</a>
+      </form>
+    </nav>
+{% endblock %}
+
+{% block content %}
+            <div class="container mt-5">
+        <div class="row">
+<div class="col-12 offset-md-12">
+
+<div class="card border-primary mb-3" style="max-width: 80rem;">
+  <div class="card-header">Круговая диаграмма количества альбомов в различных странах</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">
+    {{ country_chart|safe }}</h5>
+    <h5>Всего альбомов: {{ all_albums }}</h5>    
+  </div>
+</div>
+
+<div class="card border-primary mb-3" style="max-width: 80rem;">
+  <div class="card-header">Диаграмма количества треков в различных жанрах</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">{{ genre_chart|safe }}
+    <h5>Всего треков: {{ all_songs }}</h5>
+    <h5>Всего треков без жанра: {{ all_songs_without_genres }}</h5>   </h5>    
+  </div>
+</div>
+
+<div class="card border-primary mb-3" style="max-width: 80rem;">
+  <div class="card-header">График времени треков</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">{{ time_chart|safe }}
+    <h5>Всего треков без времени: {{all_songs_without_time}}</h5></h5>   
+  </div>
+</div>
+
+<div class="card border-primary mb-3" style="max-width: 80rem;">
+  <div class="card-header">Диаграмма количества альбомов в лейблах</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">{{ label_chart|safe }}
+    <h5>Всего альбомов без лейблов: {{all_albums_without_labels}}</h5></h5>   
+  </div>
+</div>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}

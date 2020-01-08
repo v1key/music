@@ -1,0 +1,44 @@
+{% extends 'music/albums_list.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+
+
+    <h1>Новый альбом</h1>
+    <form class="" action="{% url 'albums_create_url' %}" method="post">
+            {% csrf_token %}
+
+    <div class="form-group">
+    {{ album_form.album_title.label }}
+    {{ album_form.album_title }}
+    </div>
+    <div class="form-group">
+    {{ album_form.album_type.label }}
+    {{ album_form.album_type }}
+    </div>
+    <div class="form-group">
+    {{ album_form.date.label }}
+    {{ album_form.date }}
+    </div>
+    <div class="form-group">
+    {{ album_form.producer.label }}
+    {{ album_form.producer }}
+    </div>
+    <div class="form-group">
+    {{ album_form.label.label }}
+    {{ album_form.label }}
+    </div>
+    <div class="form-group">
+    {{ album_form.country.label }}
+    {{ album_form.country }}
+    </div>
+    <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+<p></p>
+
+</div>
+</div>
+</div>
+{% endblock %}

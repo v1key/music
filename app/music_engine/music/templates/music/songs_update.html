@@ -1,0 +1,60 @@
+{% extends 'music/songs_list.html' %}
+
+{% block content %}
+            <div class="container mt-5">
+        <div class="row">
+<div class="col-6 offset-md-2">
+
+
+
+<!-- INPUT SONG -->
+
+<h1>Изменить трек</h1>
+
+<form class="" action="{% url 'songs_update_url' song_id=song.song_id %}" method="post">
+        {% csrf_token %}
+
+
+<div class="form-group">
+{{ song_form.song_title.label }}
+{{ song_form.song_title }}
+</div>
+<div class="form-group">
+{{ song_form.song_time.label }}
+{{ song_form.song_time }}
+</div>
+<div class="form-group">
+{{ song_form.artist.label }}
+{{ song_form.artist }}
+</div>
+<div class="form-group">
+{{ song_form.album.label }}
+{{ song_form.album }}
+</div>
+<div class="form-group">
+{{ song_form.genre.label }}
+{{ song_form.genre }}
+</div>
+<button type="submit" class="btn btn-primary">Изменить</button>
+<a href="{% url 'songs_delete_url' song_id=song.song_id %}" class="btn btn-outline-danger mr-2">Удалить</a> 
+{% for author in authors %}
+
+{% if song.song_id == author.song_id %}
+
+<a href="{% url 'songs_authors_delete_url' id=author.id %}">{{ author.author }}</a>
+{% endif %}
+
+{% endfor %}
+</form>
+
+<!--
+<p></p>
+<h1>Удалить автора</h1>
+-->
+<p></p>
+
+
+</div>
+</div>
+</div>
+{% endblock %}

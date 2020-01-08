@@ -1,0 +1,33 @@
+{% extends 'music/authors_list.html' %}
+
+{% block content %}
+<div class="container mt-5">
+<div class="row">
+<div class="col-6 offset-md-2">
+
+
+
+<p></p>
+<h1>Указать автора трека</h1>
+<form action="{% url 'songs_authors_add_url' %}" method="post">
+{% csrf_token %}
+<div class="form-group">
+Трек
+{{ song_authors_form.song }}
+</div>
+<div class="form-group">
+Автор
+{{ song_authors_form.author }}
+</div>
+<button type="submit" class="btn btn-primary">Добавить</button>
+</form>
+
+
+<p></p>
+
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

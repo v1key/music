@@ -1,0 +1,23 @@
+{% extends 'music/songs_list.html' %}
+
+{% block content %}
+            <div class="container mt-5">
+        <div class="row">
+<div class="col-6 offset-md-2">
+
+
+
+<h1>Удалить песню "{{ song }}"?</h1>
+<form class="" action="{% url 'songs_delete_url' song_id=song.song_id %}" method="post">
+        {% csrf_token %}
+
+<button type="submit" class="btn btn-danger">Да</button>
+<a href="{% url 'songs_list_url' %}" class="btn btn-outline-dark">Нет</a>
+</form>
+
+
+</div>
+</div>
+</div>
+
+{% endblock %}
