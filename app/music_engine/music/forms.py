@@ -1,4 +1,5 @@
 from django import forms
+from django.forms.widgets import FileInput
 
 from .models import *
 #from django.core.exceptions import ValidationError
@@ -109,8 +110,8 @@ class ProducerForm(forms.ModelForm):
 class AlbumForm(forms.ModelForm):
     class Meta:
         model = Album
-        fields = {'album_title', 'album_type', 'date', 'producer', 'label', 'country'}
-        labels = {'album_title': 'Альбом', 'album_type': 'Тип', 'date': 'Дата', 'producer': 'Продюсер', 'label': 'Лейбл', 'country': 'Страна'}
+        fields = {'album_title', 'album_type', 'date', 'producer', 'label', 'country', 'album_img'}
+        labels = {'album_title': 'Альбом', 'album_type': 'Тип', 'date': 'Дата', 'producer': 'Продюсер', 'label': 'Лейбл', 'country': 'Страна', 'album_img': 'Обложка'}
 
         widgets = {
             'album_title': forms.TextInput(attrs={'class': 'form-control'}),
@@ -121,6 +122,8 @@ class AlbumForm(forms.ModelForm):
             'country': forms.Select(attrs={'class': 'form-control'}),
         }
 
+class AlbumIMGForm(forms.Form):
+    album_img = models.ImageField() 
 
 class AlbumSongForm(forms.ModelForm):
     class Meta:

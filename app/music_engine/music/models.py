@@ -17,6 +17,7 @@ class Album(models.Model):
     label = models.ForeignKey('Label', models.DO_NOTHING, blank=True, null=True)
     country = models.ForeignKey('Country', models.DO_NOTHING, blank=True, null=True)
     slug = models.SlugField(max_length=150, blank=True, unique=True)
+    album_img = models.ImageField(upload_to = 'album/', null=True, blank=True)
 
     class Meta:
         managed = False
@@ -30,6 +31,7 @@ class Album(models.Model):
         if not self.album_id:
             self.slug = gen_slug(self.album_title)
         super(Album, self).save(*args, **kwargs)
+
 
 
 class AlbumType(models.Model):
@@ -174,5 +176,6 @@ class SongAuthors(models.Model):
     class Meta:
         managed = False
         db_table = 'song_authors'
+        ordering = ["author__author_title"]
 
 

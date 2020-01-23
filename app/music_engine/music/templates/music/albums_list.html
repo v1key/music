@@ -37,9 +37,15 @@
 {% for album in albums %}
   <div class="col-sm-3">
     <div class="card mb-3">
+    {% if album.album_img.url != None %}
+    <img class="card-img-top" src="{{ album.album_img.url }}" alt="Card image cap">
+    {% endif %}
       <div class="card-body">
         <h5 class="card-title">{{ album|truncatechars:17 }}</h5>
-        <p class="card-text">{{ album.album_type|default:'Альбом' }}</p>
+        <p class="card-text">{{ album.album_type|default:'Альбом' }}
+
+
+</p>
         <a href="{% url 'albums_detail_url' slug=album.slug %}" class="btn btn-primary">Открыть</a>
       </div>
      </div>

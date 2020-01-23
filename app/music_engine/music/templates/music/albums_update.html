@@ -7,7 +7,7 @@
 
 
     <h1>Изменить альбом</h1>
-    <form class="" action="{% url 'albums_update_url' slug=album.slug %}" method="post">
+    <form class="" action="{% url 'albums_update_url' slug=album.slug %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
     <div class="form-group">
@@ -34,9 +34,18 @@
     {{ album_form.country.label }}
     {{ album_form.country }}
     </div>
+    <div class="form-group">
+    {{ album_form.album_img.label }}
+    {{ album_form.album_img }}
+    </div>
     <button type="submit" class="btn btn-primary">Изменить</button>
     <a href="{% url 'albums_delete_url' slug=album.slug %}" class="btn btn-outline-danger">Удалить</a>
     </form>
+{% if album.album_img.url != None %}
+<img src="{{ album.album_img.url }}" height="300" width="300" />
+{% endif %}
+
+
 <p></p>
 {{ song_form }}
 </div>

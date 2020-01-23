@@ -16,13 +16,11 @@ class SongsList(View):
     def get(self, request):
         search_query = request.GET.get('search', '')
         sort = request.GET.getlist('sort')
+        authors = SongAuthors.objects.all().order_by('author__author_title')
         if search_query:
             songs = Song.objects.filter(Q(song_title__icontains=search_query) | Q(artist__artist_title__icontains=search_query) | Q(album__album_title__icontains=search_query) | Q(genre__genre_title__icontains=search_query) | Q(songauthors__author__author_title__icontains=search_query)).distinct()
         else:
-
             songs = Song.objects.all().order_by(*sort)
-
-        authors = SongAuthors.objects.all().order_by('author__author_title')
         return render(request, 'music/songs_list.html', context = { 'songs': songs, 'authors': authors })
 
 class SongsAuthorsAdd(View):
@@ -185,14 +183,14 @@ class AlbumsUpdate(View):
         #bound_form_song = AlbumSongForm(instance=song)
         context = {
             'album_form': bound_form,
-            'album': album
+            'album': album,
         }
         return render(request, 'music/albums_update.html', context=context)
 
     def post(self, request, slug):
         album = Album.objects.get(slug__iexact=slug)
        # song = Song.objects.get(album__iexact=album[0].album_title)
-        bound_form = AlbumForm(request.POST, instance=album)
+        bound_form = AlbumForm(request.POST, request.FILES, instance=album)
        # bound_form_song = AlbumSongForm(request.POST, instance=song)
 
         if bound_form.is_valid():
